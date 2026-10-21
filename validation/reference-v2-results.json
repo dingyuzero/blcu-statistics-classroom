@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "date": "2026-10-21",
+  "oracle": {
+    "python": "3.14.3",
+    "scipy": "1.18.0"
+  },
+  "source_sha256": "236c2831aad6eee918c46a0be8722c2e6ff0f4e3ba91715b8edef1a88a7fa271",
+  "checks": {
+    "student": {
+      "comparisons": 60,
+      "maximum_absolute_error": 6.054708578950851e-08
+    },
+    "proportion": {
+      "comparisons": 400,
+      "maximum_absolute_error": 2.220446049250313e-15
+    },
+    "power": {
+      "comparisons": 180,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    "multiple": {
+      "comparisons": 40,
+      "maximum_absolute_error": 5.259681579161679e-15
+    },
+    "mean": {
+      "comparisons": 32,
+      "maximum_absolute_error": 1.2522599718067795e-05
+    },
+    "bootstrap": {
+      "comparisons": 1509,
+      "maximum_absolute_error": 3.552713678800501e-15
+    },
+    "groups": {
+      "comparisons": 36,
+      "maximum_absolute_error": 8.881784197001252e-16
+    },
+    "residuals": {
+      "comparisons": 8,
+      "maximum_absolute_error": 1.7763568394002505e-15
+    }
+  },
+  "scope": "Finite cases over documented boundaries. Bootstrap reuses the declared LCG but independent sampling, quantiles and SD in Python; no claim of universal or clinical validity."
+}

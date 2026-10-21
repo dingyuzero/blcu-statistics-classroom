@@ -1,0 +1,11 @@
+const E=require('../dist/stats-extra.js');
+const out={student:[],proportion:[],power:[],multiple:[],mean:[],bootstrap:[],groups:[],residuals:[]};
+for(const df of [1,2,5,30,100,200])for(const alpha of [.001,.01,.05,.1,.2])out.student.push({df,alpha,value:E.tReference(df,alpha)});
+for(const n of [1,2,10,30,1000])for(const k of [...new Set([0,1,Math.floor(n/2),n-1,n])])for(const c of [.8,.9,.95,.99,.999])out.proportion.push({n,k,c,value:E.proportion(k,n,c)});
+for(const n of [2,25,100,500])for(const d of [-20,-5,0,5,20])for(const s of [1,10,30])for(const a of [.01,.05,.1])out.power.push({n,d,s,a,value:E.power(n,d,s,a)});
+for(const m of [1,2,20,100])for(const a of [.001,.01,.05,.1,.2])out.multiple.push({m,a,value:E.multiplicity(m,a)});
+for(const data of [[1,2],[1,2,3,4,5],[-10000,10000],[42,45,46,48,49,50,51,53,55,61]])for(const c of [.8,.95,.99,.999])out.mean.push({data,c,value:E.meanInterval(data,c)});
+for(const data of [[1,2,3],[1,1,1,20],[-10000,10000]])out.bootstrap.push({data,c:.95,seed:2026,B:500,value:E.bootstrap(data,500,.95,2026)});
+for(const o of [0,3,6])for(const s of [.2,.8,1.5])out.groups.push(E.grouped(o,s,2026));
+for(const p of [[[1,1],[2,2],[3,2]],[[0,1],[1,-1],[2,3],[4,7]]])out.residuals.push({points:p,value:E.residuals(p,.3,.7)});
+console.log(JSON.stringify(out));

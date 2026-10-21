@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "core_sha256": "8de3d9d6403cd9e38a20258f3642841cff93d9a41c6c7eec2a54329ed48bdd02",
+  "oracle": {
+    "python": "3.14.3",
+    "scipy": "1.18.0"
+  },
+  "seed": 20261020,
+  "checks": {
+    "normal": {
+      "comparisons": 500,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    "binomial": {
+      "comparisons": 500,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    "welch": {
+      "comparisons": 2500,
+      "maximum_absolute_error": 5.739434918439201e-07
+    },
+    "intervals": {
+      "comparisons": 600,
+      "maximum_absolute_error": 9.932456634942355e-08
+    },
+    "regression": {
+      "comparisons": 8,
+      "maximum_absolute_error": 4.440892098500626e-16
+    }
+  },
+  "scope": "Finite seeded cases over UI input range; no claim of universal accuracy. CI oracle checks endpoints from simulated sample summaries; regression from generated paired points."
+}
