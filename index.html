@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="北京语言大学 Ding Lab统计学课程资源系统：描述统计、概率分布、抽样分布、置信区间、假设检验和相关回归的交互课堂。"
+    />
+    <meta name="theme-color" content="#278b85" />
+    <title>北京语言大学 Ding Lab · 统计学课程资源系统</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="vendor/jsxgraph.css" />
+    <link rel="stylesheet" href="vendor/katex.min.css" />
+    <link rel="stylesheet" href="styles.css?v=2.0.0" />
+    <script defer src="vendor/jstat.min.js"></script>
+    <script defer src="vendor/simple-statistics.min.js"></script>
+    <script defer src="vendor/jsxgraphcore.js"></script>
+    <script defer src="vendor/katex.min.js"></script>
+    <script defer src="stats-core.js?v=2.0.0"></script>
+    <script defer src="stats-extra.js?v=2.0.0"></script>
+    <script defer src="plot-engine.js?v=2.0.0"></script>
+    <script defer src="ui-helpers.js?v=2.0.0"></script>
+    <script defer src="resources.js?v=2.0.0"></script>
+    <script defer src="extra-labs.js?v=2.0.0"></script>
+    <script defer src="app.js?v=2.0.0"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到主要内容</a>
+    <aside class="sidebar" id="sidebar">
+      <a href="#home" class="brand"
+        ><span class="brandmark">σ</span
+        ><span
+          ><strong>北京语言大学 <span class="brand-lab">Ding Lab</span></strong><small>统计学课程资源系统</small></span
+        ></a
+      >
+      <div class="nav-label">课程工作台 <span>WORKSPACE</span></div>
+      <nav aria-label="课程导航">
+        <a href="#home" data-nav="home"><i>⌂</i>课程总览</a>
+        <div class="nav-label sub">交互实验室</div>
+        <a href="#descriptive" data-nav="descriptive"
+          ><i>x̄</i>描述统计<span class="nav-num">01</span></a
+        >
+        <a href="#distribution" data-nav="distribution"
+          ><i>p</i>概率分布<span class="nav-num">02</span></a
+        >
+        <a href="#sampling" data-nav="sampling"
+          ><i>μ</i>抽样与中心极限定理<span class="nav-num">03</span></a
+        >
+        <a href="#confidence" data-nav="confidence"
+          ><i>↔</i>置信区间<span class="nav-num">04</span></a
+        >
+        <a href="#hypothesis" data-nav="hypothesis"
+          ><i>t</i>假设检验<span class="nav-num">05</span></a
+        >
+        <a href="#regression" data-nav="regression"
+          ><i>r</i>相关与回归<span class="nav-num">06</span></a
+        >
+        <div class="nav-separator"></div>
+        <a href="#resources" data-nav="resources"
+          ><i>◇</i>开源资源库<span class="count">7</span></a
+        >
+        <a href="#guide" data-nav="guide"><i>▤</i>课堂使用指南</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span>为直观理解而设计<small
+          >观察 · 提问 · 验证</small
+        >
+        <p>Ding Lab · 课堂交互资源</p>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="crumb">
+          <button id="menu" class="icon-btn mobile-menu" aria-label="展开导航">
+            ☰</button
+          ><span>统计学</span><b>/</b><strong id="breadcrumb">课程总览</strong>
+        </div>
+        <div class="top-actions">
+          <span class="semester">STATISTICS × PSYCHOLOGY</span
+          ><button id="present" class="button small">
+            ⛶ <span>课堂演示</span>
+          </button>
+        </div>
+      </header>
+      <main id="main" tabindex="-1"></main>
+      <footer class="footer">
+        <span>北京语言大学 Ding Lab · 统计学课程资源系统</span
+        ><span
+          >让数据可见，让推断有据。<a href="#resources">开源致谢 ↗</a></span
+        >
+      </footer>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <noscript
+      ><div class="noscript">请启用 JavaScript 以使用交互图形。</div></noscript
+    >
+  </body>
+</html>
