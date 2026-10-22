@@ -123,7 +123,7 @@
       item.setAttribute({ ...attrs, visible: valid });
       return item;
     }
-    text(x, y, content) {
+    text(x, y, content, attrs = {}) {
       const item = this.obtain("text", () =>
         this.board.create("text", [x, y, content], {
           display: "internal",
@@ -137,6 +137,7 @@
       );
       item.setPosition(JXG.COORDS_BY_USER, [x, y]);
       item.setText(content);
+      item.setAttribute({ fontSize: 11, ...attrs });
       return item;
     }
     finish() {
