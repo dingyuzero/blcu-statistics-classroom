@@ -256,5 +256,5 @@ function groupsLab() {
 }
 
 function demoDirectory() {
-  return `<section class="demo-directory"><div class="section-heading"><div><h2>18 个演示，按章节展开</h2><p>选一个问题开始；每个演示都可导出图形和数值表。</p></div></div><div class="demo-directory-grid">${topics.map(t=>`<div><h3>${t.title}</h3>${chapterModules[t.id].map((m,i)=>`<a href="#${t.id}${m[0]==="main"?"":"/"+m[0]}"><span>0${i+1}</span>${m[1]} ↗</a>`).join("")}</div>`).join("")}</div></section>`;
+  return `<section class="demo-directory"><div class="section-heading"><div><h2>18 个演示，按章节展开</h2><p>选一个问题开始；每个演示都可导出图形和数值表。</p></div></div><div class="demo-directory-grid">${topics.filter(t=>!t.advanced).map(t=>`<div><h3>${t.title}</h3>${chapterModules[t.id].map((m,i)=>`<a href="#${t.id}${m[0]==="main"?"":"/"+m[0]}"><span>0${i+1}</span>${m[1]} ↗</a>`).join("")}</div>`).join("")}</div></section>`;
 }

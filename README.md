@@ -1,6 +1,6 @@
 # 北京语言大学 Ding Lab · 统计学交互课堂
 
-6 章、18 个交互演示，面向心理学统计课的观察、提问和课堂讨论。纯静态网页，内置 JSXGraph、jStat、simple-statistics、KaTeX 及公式字体。
+20 个主题、46 个交互演示（保留 18 个基础演示，新增《高级心理统计》14 章 28 个概念演示），面向心理学统计课的观察、提问和课堂讨论。纯静态网页，内置 JSXGraph、jStat、simple-statistics、KaTeX 及公式字体。
 
 - [公开课堂网站](https://dingyuzero.github.io/blcu-statistics-classroom/)
 - [下载单文件离线版和发布包](https://github.com/dingyuzero/blcu-statistics-classroom/releases/latest)
@@ -15,6 +15,10 @@
 | 置信区间 | 长期覆盖率、单样本均值区间、Wilson 与 Wald 比例区间 |
 | 假设检验 | Welch t、已知 σ 的 z 检验功效、多重比较 |
 | 相关与回归 | 相关与异常点、残差与最小二乘、分组与汇总相关 |
+
+## 高级心理统计教材入口
+
+[按教材 14 章探索](https://dingyuzero.github.io/blcu-statistics-classroom/#textbook) · [教材覆盖说明与边界](docs/教材覆盖说明.md)。依据刘红云《高级心理统计》2019 年第 1 版目录组织，覆盖各章核心概念，不等于实现每节子方法或完整统计软件。教材扫描件不随项目发布。
 
 ## 本地运行
 
@@ -37,6 +41,6 @@ Windows PowerShell 可使用 `npm.cmd`。发布到 GitHub Pages 的是 `gh-pages
 
 单文件版只需复制 HTML 到另一台电脑，用现代桌面浏览器打开。公式字体、脚本和 Markdown 文档均已内嵌；不需要 Python、Node 或安装统计软件。使用说明中列出浏览器限制和验证范围。
 
-本项目用于基础教学；默认示例和模拟是合成数据。计算在本机浏览器完成，参数存储在本机浏览器，未设置账户、数据上传或分析服务。
+本项目用于基础与高级心理统计的概念教学；默认示例和模拟是合成数据。计算在本机浏览器完成，参数存储在本机浏览器，未设置账户、数据上传或分析服务。
 
 应用代码与文档采用 MIT 许可；第三方库保留自身许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

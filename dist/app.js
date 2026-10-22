@@ -129,10 +129,24 @@ function restore() {
     ))
       if (Object.hasOwn(saved, e.id)) {
         if (e.type === "checkbox") e.checked = saved[e.id] === true;
-        else if (typeof saved[e.id] === "string" && saved[e.id].length <= 6000) {
+        else if (
+          typeof saved[e.id] === "string" &&
+          saved[e.id].length <= 6000
+        ) {
           const value = saved[e.id];
-          if (e.tagName === "SELECT" && ![...e.options].some(o => o.value === value)) continue;
-          if (["range", "number"].includes(e.type) && (value.trim() === "" || !Number.isFinite(Number(value)) || Number(value) < Number(e.min) || Number(value) > Number(e.max))) continue;
+          if (
+            e.tagName === "SELECT" &&
+            ![...e.options].some((o) => o.value === value)
+          )
+            continue;
+          if (
+            ["range", "number"].includes(e.type) &&
+            (value.trim() === "" ||
+              !Number.isFinite(Number(value)) ||
+              Number(value) < Number(e.min) ||
+              Number(value) > Number(e.max))
+          )
+            continue;
           e.value = value;
         }
       }
@@ -278,11 +292,12 @@ function scaffold(controlsHTML, legend, steps, question, answer) {
   $("#main").innerHTML =
     head(
       activeTitle(),
-      `LAB / 0${topics.indexOf(t) + 1} — ${t.en}`,
+      `LAB / ${String(topics.indexOf(t) + 1).padStart(2, "0")} — ${t.en}`,
       moduleInfo()[2],
       '<button class="button" id="reset">↺ 重置实验</button>',
-    ) + chapterNav() +
-    `<div class="lab-layout"><section class="plot-panel"><div class="plot-heading"><h2>${activeTitle()} · 交互画布</h2><div class="plot-tools"><button class="button" id="view-reset">刷新图形</button><button class="button" id="export">导出 SVG ↗</button></div></div><div class="plot-wrap"><div id="plot" class="jxgbox" aria-label="${activeTitle()}交互图形"></div></div><div class="legend">${legend.map((x) => "<span>" + x + "</span>").join("")}</div><div class="plot-caption" id="plot-caption"></div><div class="mini-stats" id="mini-stats"></div><details class="data-panel"><summary>查看数值表 · 把观察变成证据</summary><div class="data-tools"><p id="data-info"></p><button class="button" id="export-csv">导出 CSV</button></div><div class="table-scroll"><table id="data-table"></table></div></details></section><aside class="control-panel"><h2 class="panel-title"><span>☷</span>实验控制台</h2>${controlsHTML}${metric("当前观察")}<div class="error" id="error" role="alert"></div><p class="saved-state" id="saved-state">有效参数自动保存在本机 · 重置恢复默认</p></aside></div><div class="formula-band"><span class="label">统计表达</span><div><div id="formula" class="formula"></div><div id="formula-result" class="formula-result"></div><div id="formula-note" class="formula-note"></div></div></div>${notes(steps, question, answer)}<p class="source-note">图形：JSXGraph · 计算：jStat / simple-statistics · 内置示例及模拟均为课堂合成数据。<a href="#resources">查看开源来源</a></p>`;
+    ) +
+    chapterNav() +
+    `<div class="lab-layout"><section class="plot-panel"><div class="plot-heading"><h2>${activeTitle()} · 交互画布</h2><div class="plot-tools"><button class="button" id="view-reset">刷新图形</button><button class="button" id="export">导出 SVG ↗</button></div></div><div class="plot-wrap"><div id="plot" class="jxgbox" aria-label="${activeTitle()}交互图形"></div></div><div class="legend">${legend.map((x) => `<span style="--legend-color:${x.includes("紫色") ? purple : x.includes("橙色") ? orange : x.includes("红色") ? red : x.includes("黑灰") ? "#36434a" : x.includes("彩色") ? "linear-gradient(90deg,#278b85,#8061b4,#d38c50)" : teal}">${x}</span>`).join("")}</div><div class="plot-caption" id="plot-caption"></div><div class="mini-stats" id="mini-stats"></div><details class="data-panel"><summary>查看数值表 · 把观察变成证据</summary><div class="data-tools"><p id="data-info"></p><button class="button" id="export-csv">导出 CSV</button></div><div class="table-scroll"><table id="data-table"></table></div></details></section><aside class="control-panel"><h2 class="panel-title"><span>☷</span>实验控制台</h2>${controlsHTML}${metric("当前观察")}<div class="error" id="error" role="alert"></div><p class="saved-state" id="saved-state">有效参数自动保存在本机 · 重置恢复默认</p></aside></div><div class="formula-band"><span class="label">统计表达</span><div><div id="formula" class="formula"></div><div id="formula-result" class="formula-result"></div><div id="formula-note" class="formula-note"></div></div></div>${notes(steps, question, answer)}<p class="source-note">图形：JSXGraph · 计算：jStat / simple-statistics · 内置示例及模拟均为课堂合成数据。<a href="#resources">查看开源来源</a></p>`;
   restore();
   $("#reset").onclick = () => {
     persist(null);
@@ -799,7 +814,15 @@ function miniGraph(id, hero = false) {
 }
 function home() {
   $("#main").innerHTML =
-    `<section class="hero"><div class="hero-text"><div class="eyebrow">FROM OBSERVATIONS TO UNDERSTANDING.</div><h1>让数据的故事，<br>变得<em>清晰。</em></h1><p>在随机中看见规律，在差异中理解证据。<br>把统计学，变成可以亲手探索的课堂。</p><a class="button primary" href="#descriptive">开始探索 ↗</a> <a class="button" href="#guide">课堂使用指南</a></div><div class="hero-art">${miniGraph("sampling", true)}<span class="hero-formula">SE = σ / √n</span><span class="hero-tag">从一组数据，走向一个好问题</span></div></section><div class="intro-strip"><span><strong>06</strong>交互主题</span><span><strong>18</strong>课堂演示</span><span><strong>04</strong>已集成工具</span><span class="strip-note">可重复模拟 · 可离线使用 · 支持课堂投影</span></div><div class="section-heading"><div><h2>把统计，放进实验室</h2><p>先预测，再操作，最后用数据解释观察。</p></div><span class="text-link">从描述走向推断 ↓</span></div><div class="lab-grid">${topics.map((t, i) => `<a class="lab-card" href="#${t.id}"><div class="card-art"><span class="card-index">LAB / 0${i + 1}</span><span class="card-chip">${t.time}</span>${miniGraph(t.id)}</div><div class="card-body"><h3>${t.title}</h3><p>${t.desc}</p><div class="card-bottom"><span>3 个演示 · ${t.tags}</span><span>进入章节 ↗</span></div></div></a>`).join("")}</div>${demoDirectory()}<div class="section-heading"><div><h2>一节课，从一个好问题开始</h2><p>建议演示路线 · 约 25 分钟</p></div></div><section class="class-path"><div class="path-icon">σ</div><div class="path-copy"><h3>样本越来越大，我们就越来越确定吗？</h3><p>从均值的波动出发，走向区间，再讨论显著性。</p></div><div class="path-steps"><span>抽样分布</span>→<span>置信区间</span>→<span>假设检验</span></div><a class="button" href="#guide">查看路线 ↗</a></section>`;
+    `<section class="hero"><div class="hero-text"><div class="eyebrow">FROM OBSERVATIONS TO UNDERSTANDING.</div><h1>让数据的故事，<br>变得<em>清晰。</em></h1><p>在随机中看见规律，在差异中理解证据。<br>把统计学，变成可以亲手探索的课堂。</p><a class="button primary" href="#descriptive">开始探索 ↗</a> <a class="button" href="#guide">课堂使用指南</a></div><div class="hero-art">${miniGraph("sampling", true)}<span class="hero-formula">SE = σ / √n</span><span class="hero-tag">从一组数据，走向一个好问题</span></div></section><div class="intro-strip"><span><strong>20</strong>交互主题</span><span><strong>46</strong>课堂演示</span><span><strong>04</strong>已集成工具</span><span class="strip-note">可重复模拟 · 可离线使用 · 支持课堂投影</span></div><div class="section-heading"><div><h2>把统计，放进实验室</h2><p>先预测，再操作，最后用数据解释观察。</p></div><span class="text-link">从描述走向推断 ↓</span></div><div class="lab-grid">${topics
+      .filter((t) => !t.advanced)
+      .map(
+        (t, i) =>
+          `<a class="lab-card" href="#${t.id}"><div class="card-art"><span class="card-index">LAB / 0${i + 1}</span><span class="card-chip">${t.time}</span>${miniGraph(t.id)}</div><div class="card-body"><h3>${t.title}</h3><p>${t.desc}</p><div class="card-bottom"><span>3 个演示 · ${t.tags}</span><span>进入章节 ↗</span></div></div></a>`,
+      )
+      .join(
+        "",
+      )}</div><section class="textbook-banner"><div><div class="eyebrow">ADVANCED PSYCHOLOGICAL STATISTICS</div><h2>走进《高级心理统计》</h2><p>刘红云 · 2019 年第 1 版 · 14 章 / 28 个新增概念演示</p><p>理解控制、分类、潜变量、中介与调节，再走向多层与追踪模型。</p></div><a class="button primary" href="#textbook">按教材章节探索 ↗</a></section>${demoDirectory()}<div class="section-heading"><div><h2>一节课，从一个好问题开始</h2><p>建议演示路线 · 约 25 分钟</p></div></div><section class="class-path"><div class="path-icon">σ</div><div class="path-copy"><h3>样本越来越大，我们就越来越确定吗？</h3><p>从均值的波动出发，走向区间，再讨论显著性。</p></div><div class="path-steps"><span>抽样分布</span>→<span>置信区间</span>→<span>假设检验</span></div><a class="button" href="#guide">查看路线 ↗</a></section>`;
 }
 function guide() {
   $("#main").innerHTML =
@@ -836,7 +859,7 @@ function guide() {
       )
       .join(
         "",
-      )}</div><div class="section-heading"><div><h2>课前与课后</h2></div></div><section class="notes-panel"><ol><li>课前打开主题，点击“重置实验”，确认图形与公式正常显示。</li><li>调整参数后再导出 SVG；图中附带参数、结果、坐标说明与解释。</li><li>展开数值表可导出 CSV。模拟表包含随机种子和生成参数；不是实际研究数据。</li><li>描述统计输入完成后点击“应用数据”。不合法输入保留上次有效图形和导出。</li><li>离线包内置四个库与公式字体；外部资源链接需要联网。</li><li>本工具用于基础教学。真实分析还需处理设计、缺失值、独立性、模型诊断和多重比较。</li></ol><div class="resource-links"><a href="https://github.com/dingyuzero/blcu-statistics-classroom/releases/latest" target="_blank" rel="noopener noreferrer">单文件离线版下载 ↗</a><a href="docs/部署说明.md" download>下载部署说明 MD ↗</a><a href="docs/使用说明.md" download>下载使用说明书 MD ↗</a><a href="docs/开发交接.md" download>下载开发交接文档 MD ↗</a><a href="#resources">查看开源项目 ↗</a></div></section>`;
+      )}</div><div class="section-heading"><div><h2>课前与课后</h2></div></div><section class="notes-panel"><ol><li>课前打开主题，点击“重置实验”，确认图形与公式正常显示。</li><li>调整参数后再导出 SVG；图中附带参数、结果、坐标说明与解释。</li><li>展开数值表可导出 CSV。模拟表包含随机种子和生成参数；不是实际研究数据。</li><li>描述统计输入完成后点击“应用数据”。不合法输入保留上次有效图形和导出。</li><li>离线包内置四个库与公式字体；外部资源链接需要联网。</li><li>本工具用于基础与高级统计的概念教学。真实分析还需处理设计、缺失值、独立性、模型诊断和多重比较。</li></ol><div class="resource-links"><a href="https://github.com/dingyuzero/blcu-statistics-classroom/releases/latest" target="_blank" rel="noopener noreferrer">单文件离线版下载 ↗</a><a href="docs/教材覆盖说明.md" download>下载教材覆盖说明 MD ↗</a><a href="docs/部署说明.md" download>下载部署说明 MD ↗</a><a href="docs/使用说明.md" download>下载使用说明书 MD ↗</a><a href="docs/开发交接.md" download>下载开发交接文档 MD ↗</a><a href="#resources">查看开源项目 ↗</a></div></section>`;
 }
 function route() {
   const [id, sub = "main"] = location.hash.slice(1).split("/");
@@ -845,39 +868,61 @@ function route() {
     return;
   }
   current =
-    topics.some((t) => t.id === id) || ["resources", "guide"].includes(id)
+    topics.some((t) => t.id === id) ||
+    ["resources", "guide", "textbook"].includes(id)
       ? id
       : "home";
-  currentModule = chapterModules[current]?.some(m => m[0] === sub) ? sub : "main";
+  currentModule = chapterModules[current]?.some((m) => m[0] === sub)
+    ? sub
+    : "main";
   if (scene) {
     scene.destroy();
     scene = null;
   }
   currentTable = null;
   $("#breadcrumb").textContent =
-    (topics.find((t) => t.id === current) ? topics.find(t => t.id === current).title + " / " + activeTitle() : "") ||
-    { home: "课程总览", resources: "开源资源库", guide: "课堂使用指南" }[
-      current
-    ];
+    (topics.find((t) => t.id === current)
+      ? topics.find((t) => t.id === current).title + " / " + activeTitle()
+      : "") ||
+    {
+      home: "课程总览",
+      resources: "开源资源库",
+      guide: "课堂使用指南",
+      textbook: "高级心理统计 · 教材导航",
+    }[current];
   $$("[data-nav]").forEach((a) => {
-    a.classList.toggle("active", a.dataset.nav === current);
-    if (a.dataset.nav === current) a.setAttribute("aria-current", "page");
+    a.classList.toggle(
+      "active",
+      a.dataset.nav === current ||
+        (a.dataset.nav === "textbook" &&
+          topics.find((t) => t.id === current)?.advanced),
+    );
+    if (
+      a.dataset.nav === current ||
+      (a.dataset.nav === "textbook" &&
+        topics.find((t) => t.id === current)?.advanced)
+    )
+      a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
   $("#sidebar").classList.remove("open");
   $("#menu").setAttribute("aria-expanded", "false");
-  document.title = $("#breadcrumb").textContent + " · 北京语言大学 Ding Lab · 统计课堂";
-  const render = moduleInfo()?.[3] || ({
-    home,
-    descriptive,
-    distribution,
-    sampling,
-    confidence,
-    hypothesis,
-    regression,
-    resources: resourcePage,
-    guide,
-  })[current];
+  document.title =
+    $("#breadcrumb").textContent + " · 北京语言大学 Ding Lab · 统计课堂";
+  const render =
+    moduleInfo()?.[3] ||
+    {
+      home,
+      descriptive,
+      distribution,
+      sampling,
+      confidence,
+      hypothesis,
+      regression,
+      resources: resourcePage,
+      guide,
+      textbook: textbookPage,
+    }[current];
   render();
   window.scrollTo(0, 0);
 }
@@ -909,5 +954,6 @@ document.addEventListener("keydown", (e) => {
     $("#menu").setAttribute("aria-expanded", "false");
   }
 });
+installAdvanced();
 window.addEventListener("hashchange", route);
 route();

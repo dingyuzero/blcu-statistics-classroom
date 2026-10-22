@@ -1,8 +1,8 @@
 {
   "name": "blcu-statistics-classroom",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "北京语言大学 Ding Lab · 统计学交互课堂：6章18个演示",
+  "description": "北京语言大学 Ding Lab · 统计学交互课堂：18个基础演示与高级心理统计14章28个概念演示",
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "vendor": "node scripts/vendor.cjs",

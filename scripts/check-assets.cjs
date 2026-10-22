@@ -30,6 +30,7 @@ function walk(dir) {
 }
 walk(dist);
 for (const file of [
+  "docs/教材覆盖说明.md",
   "docs/使用说明.md",
   "docs/开发交接.md",
   "docs/部署说明.md",
@@ -54,7 +55,7 @@ for (const [source, dest] of pairs)
     hash(path.join(dist, "vendor", dest))
   )
     problems.push("Vendored bundle differs: " + dest);
-for (const name of ["使用说明.md", "开发交接.md", "部署说明.md"])
+for (const name of ["使用说明.md", "开发交接.md", "部署说明.md", "教材覆盖说明.md"])
   if (
     hash(path.join(base, "docs", name)) !== hash(path.join(dist, "docs", name))
   )
@@ -68,6 +69,6 @@ if (problems.length) {
       localReferences,
       missing: 0,
       bundleCopiesVerified: pairs.length,
-      documentCopiesVerified: 3,
+      documentCopiesVerified: 4,
     }),
   );

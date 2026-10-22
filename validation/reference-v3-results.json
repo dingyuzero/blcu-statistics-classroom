@@ -1,0 +1,13 @@
+{
+  "oracle": "NumPy/SciPy",
+  "scalar_comparisons": 1359,
+  "max_absolute_error": 2.5303314998836868e-11,
+  "passed": true,
+  "scope": [
+    "Hotelling F tails",
+    "OLS coefficients and standard errors",
+    "symmetric eigenvalues",
+    "normal-theory nested covariance models",
+    "paired mediation bootstrap and type 7 intervals"
+  ]
+}
