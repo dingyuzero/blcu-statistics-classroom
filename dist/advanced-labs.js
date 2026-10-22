@@ -779,7 +779,7 @@ function pathAdvanced(equivalent) {
           range("c", "路径 X → Y", 0.2, -1, 1, 0.1),
     equivalent
       ? ["绿色：X → M → Y", "紫色：X ← M → Y"]
-      : ["绿色：直接路径", "紫色：经 M 的路径"],
+      : ["橙色：直接路径", "紫色：经 M 的路径"],
     equivalent
       ? [
           "改变相邻相关，比较两种生成结构。",
